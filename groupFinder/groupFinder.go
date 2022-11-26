@@ -1,6 +1,9 @@
 package groupfinder
 
 import (
+	"fmt"
+	"strconv"
+	"test_task_yabbi/helper"
 	"test_task_yabbi/matrix"
 )
 
@@ -16,6 +19,33 @@ func New(m matrix.Matrix) groupFinder {
 		ColorMatrix:     m,
 		GroupMatrix:     matrix.New(len(m), len(m[0])),
 		ElementsInGroup: make(map[int]int),
+	}
+}
+
+func (gf *groupFinder) PrintMatrixWithMarkedGroup(groupToMark int) {
+	matrixWithMarks := make([][]string, len(gf.ColorMatrix))
+	for i := range matrixWithMarks {
+		matrixWithMarks[i] = make([]string, len(gf.ColorMatrix[0]))
+	}
+
+	for i, row := range gf.GroupMatrix {
+		for j, elementGroup := range row {
+			if elementGroup != groupToMark {
+				matrixWithMarks[i][j] = strconv.Itoa(gf.ColorMatrix[i][j])
+				continue
+			}
+
+			matrixWithMarks[i][j] = helper.MarkStringWithRedColor(
+				strconv.Itoa(gf.ColorMatrix[i][j]),
+			)
+		}
+	}
+
+	for _, row := range matrixWithMarks {
+		for _, element := range row {
+			fmt.Printf("%s ", element)
+		}
+		fmt.Printf("\n")
 	}
 }
 

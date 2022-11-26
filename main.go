@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	matrix := matrixgenerator.GenerateMatrixBySize(3, 3, 2)
+	matrix := matrixgenerator.GenerateMatrixBySize(5, 5, 3)
 
 	fmt.Println("Generated matrix")
 	fmt.Println(matrix)
@@ -15,11 +15,8 @@ func main() {
 	gf := groupfinder.New(matrix)
 	maxGroup, maxGroupSize := gf.GetLagrestGroup()
 
-	fmt.Println("Group matrix")
-	fmt.Println(gf.GroupMatrix)
+	fmt.Println("Matrix with the largest group")
+	gf.PrintMatrixWithMarkedGroup(maxGroup)
 
-	fmt.Println("Elements in group (groupNumber:elementsInGroup)")
-	fmt.Println(gf.ElementsInGroup)
-
-	fmt.Printf("Max group is %d with size %d\n", maxGroup, maxGroupSize)
+	fmt.Printf("Max group size %d\n", maxGroupSize)
 }
