@@ -9,10 +9,12 @@ import (
 func benchmarkGroupFilter(height int, width int, colorsCount int, b *testing.B) {
 	b.StopTimer()
 	m := matrixgenerator.GenerateMatrixBySize(height, width, colorsCount)
-	gf := New(m)
 	b.StartTimer()
 
 	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+		gf := New(m)
+		b.StartTimer()
 		gf.GetNumberOfElementsInLagrestGroup()
 	}
 }
