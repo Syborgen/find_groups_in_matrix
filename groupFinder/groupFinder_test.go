@@ -42,12 +42,17 @@ func TestFindLargestGroup(t *testing.T) {
 		matrix.Row{1, 1, 1},
 	}
 
-	expected := 7
+	expectedSize := 7
+	expectedGroup := 1
 	groupFinder := New(m)
 
-	actual := groupFinder.GetNumberOfElementsInLagrestGroup()
+	actualGroup, actualSize := groupFinder.GetNumberOfElementsInLagrestGroup()
 
-	if expected != actual {
+	if expectedGroup != actualGroup {
+		t.Fatal("Actual group number is incorrect")
+	}
+
+	if expectedSize != actualSize {
 		t.Fatal("Actual group size is incorrect")
 	}
 

@@ -19,17 +19,19 @@ func New(m matrix.Matrix) groupFinder {
 	}
 }
 
-func (gf *groupFinder) GetNumberOfElementsInLagrestGroup() int {
+func (gf *groupFinder) GetNumberOfElementsInLagrestGroup() (int, int) {
 	gf.fillGroupMatrix()
 
 	max := 0
-	for _, count := range gf.ElementsInGroup {
+	maxGroup := 0
+	for group, count := range gf.ElementsInGroup {
 		if count > max {
 			max = count
+			maxGroup = group
 		}
 	}
 
-	return max
+	return maxGroup, max
 }
 
 func (gf *groupFinder) fillGroupMatrix() {
