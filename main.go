@@ -13,7 +13,7 @@ func main() {
 	fmt.Println(matrix)
 
 	gf := groupfinder.New(matrix)
-	maxGroup, maxGroupSize := gf.GetNumberOfElementsInLagrestGroup()
+	maxGroup, maxGroupSize := gf.GetLagrestGroup()
 
 	fmt.Println("Group matrix")
 	fmt.Println(gf.GroupMatrix)

@@ -15,7 +15,7 @@ func benchmarkGroupFilter(height int, width int, colorsCount int, b *testing.B) 
 		b.StopTimer()
 		gf := New(m)
 		b.StartTimer()
-		gf.GetNumberOfElementsInLagrestGroup()
+		gf.GetLagrestGroup()
 	}
 }
 
@@ -46,7 +46,7 @@ func TestFindLargestGroup(t *testing.T) {
 	expectedGroup := 1
 	groupFinder := New(m)
 
-	actualGroup, actualSize := groupFinder.GetNumberOfElementsInLagrestGroup()
+	actualGroup, actualSize := groupFinder.GetLagrestGroup()
 
 	if expectedGroup != actualGroup {
 		t.Fatal("Actual group number is incorrect")
